@@ -45,15 +45,15 @@ function transform_biddings_to_view_model(activity_name, bid_name) {
     var event = _.sortBy(bidding, function (list) {
         return list.price
     })
-    return groupby_bidding(event);
+    return group_by_bidding(event);
 }
 
-function groupby_bidding(event) {
-    var b = _.groupBy(event, function (list) {
+function group_by_bidding(event) {
+    var price_group = _.groupBy(event, function (list) {
         return list.price
     })
     var list_price_and_number = [];
-    _.map(b, function (value, key) {
+    _.map(price_group, function (value, key) {
         list_price_and_number.push({"price": key, "number": value.length})
     })
     return get_winner_price(list_price_and_number, event);
@@ -65,15 +65,15 @@ function get_winner_price(list_price_and_number, event) {
     }) == undefined) {
         return undefined
     }
-    var c = _.find(list_price_and_number, function (list) {
+    var winner = _.find(list_price_and_number, function (list) {
         return list.number == 1
     })
-    return get_winner_message(c, event)
+    return get_winner_message(winner, event)
 }
 
-function get_winner_message(c, event) {
+function get_winner_message(winner, event) {
     var d = _.filter(event, function (list) {
-        return list.price == c.price;
+        return list.price == winner.price;
     })
     return d;
 }

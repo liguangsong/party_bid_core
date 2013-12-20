@@ -7,7 +7,6 @@ function Activity(activity_name) {
 Activity.prototype.create = function () {
     var event_list = JSON.parse(localStorage.getItem("activities")) || [];
     event_list.push(this);
-
     localStorage.setItem("activities", JSON.stringify(event_list));
 }
 

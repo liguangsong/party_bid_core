@@ -1,5 +1,4 @@
 function Bidding() {
-
 }
 
 Bidding.bidding_status = function () {
