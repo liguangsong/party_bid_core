@@ -16,17 +16,22 @@ Bidding.winner_price = function (bidding_list) {
     var sort_by_price = _.sortBy(bidding_list, function (list) {
         return list.price
     });
-    sort_by_price = _.groupBy(sort_by_price, function (list) {
+    var group_by_price = _.groupBy(sort_by_price, function (list) {
         return list.price
     });
+    return Bidding.get_winner_price()
+
+}
+
+Bidding.get_winner_price=function(group_by_price){
     var price_and_number = [];
-    _.map(sort_by_price, function (value, key) {
+    _.map(group_by_price, function (value, key) {
         price_and_number.push({"price": key, "number": value.length})
     })
-    sort_by_price = _.find(price_and_number, function (list) {
+    var winner = _.find(group_by_price, function (list) {
         return list.number == 1
     })
-    return sort_by_price.price;
+    return winner.price;
 }
 
 Bidding.winner_phone = function (bidding_list) {
@@ -70,7 +75,6 @@ Bidding.bid_success = function (json_message) {
     var price = sms.get_message(json_message);
     bid_for_activity[0].biddings.push({phone: phone, price: price})
     localStorage.setItem("bids", JSON.stringify(bid_for_activity));
-
 }
 
 Bidding.is_or_no_bid_repeat = function (json_message) {

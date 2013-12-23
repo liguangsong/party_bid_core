@@ -107,7 +107,6 @@ function transform_biddings_to_view_model(activity_id, bid_id) {
         .map(function (value, key) {
             list_price_and_number.push({"price": key, "number": value.length})
         })
-
     return is_or_not_bid_success(list_price_and_number, activity_id, bid_id);
 }
 
