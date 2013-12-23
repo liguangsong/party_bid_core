@@ -1,11 +1,11 @@
-describe("Activity", function() {
+describe("Activity", function () {
 
 
-    beforeEach(function() {
+    beforeEach(function () {
 
     });
 
-    it("should one activity was created on creating", function(){
+    it("should one activity was created on creating", function () {
 
     });
 

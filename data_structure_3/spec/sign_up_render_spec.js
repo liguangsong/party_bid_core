@@ -1,19 +1,19 @@
-describe("SignUp Render", function() {
+describe("SignUp Render", function () {
 
 
-    beforeEach(function() {
+    beforeEach(function () {
         init_activity_database();
         init_two_activity();
         init_sign_ups()
         localStorage.current_activity = "1";
     });
 
-    afterEach(function(){
+    afterEach(function () {
         localStorage.clear();
     });
 
 
-    it("should show all signed up users by activity name", function(){
+    it("should show all signed up users by activity name", function () {
         var sign_ups = SignUp.render_sign_ups("1");
 
         expect(sign_ups.length).toBe(3);

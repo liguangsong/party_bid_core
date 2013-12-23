@@ -1,15 +1,15 @@
-describe("Activity", function() {
+describe("Activity", function () {
 
 
-    beforeEach(function() {
+    beforeEach(function () {
         init_activity_database()
     });
 
-    afterEach(function(){
+    afterEach(function () {
         localStorage.clear();
     })
 
-    it("should first activity was created on creating", function(){
+    it("should first activity was created on creating", function () {
         var activity_name = "first activity";
 
         var activity = new Activity(activity_name);

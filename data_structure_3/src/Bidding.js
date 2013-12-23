@@ -13,20 +13,20 @@ Bidding.render_biddings = function (activity_id, bid_name) {
 }
 
 Bidding.winner_price = function (bidding_list) {
-    var a = _.sortBy(bidding_list, function (list) {
+    var sort_by_price = _.sortBy(bidding_list, function (list) {
         return list.price
     });
-    a = _.groupBy(a, function (list) {
+    sort_by_price = _.groupBy(sort_by_price, function (list) {
         return list.price
     });
     var price_and_number = [];
-    _.map(a, function (value, key) {
+    _.map(sort_by_price, function (value, key) {
         price_and_number.push({"price": key, "number": value.length})
     })
-    a = _.find(price_and_number, function (list) {
+    sort_by_price = _.find(price_and_number, function (list) {
         return list.number == 1
     })
-    return a.price;
+    return sort_by_price.price;
 }
 
 Bidding.winner_phone = function (bidding_list) {
@@ -48,7 +48,9 @@ Bidding.get_sort = function (activity_id, bidding_list) {
     var price = Bidding.winner_price(bidding_list);
     var name = Bidding.winner_name(activity_id, bidding_list);
     var phone = Bidding.winner_phone(bidding_list);
-    return [{name: name, price: price, phone: phone}]
+    return [
+        {name: name, price: price, phone: phone}
+    ]
 }
 
 Bidding.bid_is_or_not_sign_up = function (phone) {

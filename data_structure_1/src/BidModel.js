@@ -41,7 +41,7 @@ function transform_biddings_to_view_model(activity_name, bid_name) {
     return sort_bidding(bidding)
 }
 
- function sort_bidding(bidding) {
+function sort_bidding(bidding) {
     var event = _.sortBy(bidding, function (list) {
         return list.price
     })

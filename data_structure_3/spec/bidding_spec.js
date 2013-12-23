@@ -1,8 +1,7 @@
+describe("Bidding", function () {
 
-describe("Bidding", function() {
 
-
-    beforeEach(function() {
+    beforeEach(function () {
         init_activity_database();
         init_two_activity();
         init_sign_ups();
@@ -12,8 +11,8 @@ describe("Bidding", function() {
         var bids = [
             {
                 name: "竞价1",
-                activity_id:"1",
-                biddings:[
+                activity_id: "1",
+                biddings: [
 
                 ]
 
@@ -24,11 +23,11 @@ describe("Bidding", function() {
     });
 
 
-    afterEach(function(){
+    afterEach(function () {
         localStorage.clear();
     })
 
-    it("should bid successfully when it is bidding and user has signed up", function(){
+    it("should bid successfully when it is bidding and user has signed up", function () {
         var phone_no = "13600000000";
         var sms_json = build_sms_json("JJ12", phone_no);
         localStorage.is_bidding = "true";
@@ -41,7 +40,7 @@ describe("Bidding", function() {
         expect(bids[0].biddings[0].price).toBe("12");
     });
 
-    it("should bid failed when it is not on bidding", function(){
+    it("should bid failed when it is not on bidding", function () {
         var phone_no = "13600000000";
         var sms_json = build_sms_json("JJ12", phone_no);
         // false
@@ -64,7 +63,7 @@ describe("Bidding", function() {
         expect(bids[0].biddings.length).toBe(0);
     });
 
-    it("should bid failed when user didn't sign up", function(){
+    it("should bid failed when user didn't sign up", function () {
         var phone_no = "13600000001";
         var sms_json = build_sms_json("JJ12", phone_no);
         localStorage.is_bidding = "true";
@@ -74,7 +73,7 @@ describe("Bidding", function() {
         expect(bids[0].biddings.length).toBe(0);
     });
 
-    it("should accept bid once", function(){
+    it("should accept bid once", function () {
         var phone_no = "13600000000";
         var sms_json = build_sms_json("JJ12", phone_no);
         localStorage.is_bidding = "true";
@@ -87,7 +86,6 @@ describe("Bidding", function() {
         expect(bids[0].biddings[0].phone).toBe(phone_no);
         expect(bids[0].biddings[0].price).toBe("12");
     });
-
 
 
 });

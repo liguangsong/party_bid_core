@@ -11,10 +11,10 @@ SignUp.find_all_sign_ups = function () {
 
 SignUp.render_sign_ups = function (activity_id) {
     var sign_ups = SignUp.find_all_sign_ups();
-    var a = _.filter(sign_ups, function (list) {
+    var sign_up = _.filter(sign_ups, function (list) {
         return list.activity_id == activity_id
     })
-    return a;
+    return sign_up;
 }
 
 SignUp.prototype.create = function () {

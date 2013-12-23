@@ -1,37 +1,36 @@
+describe("Bidding", function () {
 
-describe("Bidding", function() {
 
-
-    beforeEach(function() {
+    beforeEach(function () {
         init_activity_database();
         var two_activities = {
-            '0':{
+            '0': {
                 name: "first activity",
                 sign_ups: [],
                 bids: [],
-                biddings:{}
-            } ,
+                biddings: {}
+            },
 
             '1': {
                 name: "second activity",
                 sign_ups: [
                     {
-                        name:"仝键",
-                        phone:"13600000000"
+                        name: "仝键",
+                        phone: "13600000000"
                     },
                     {
-                        name:"于硕",
-                        phone:"15600000000"
+                        name: "于硕",
+                        phone: "15600000000"
                     },
                     {
-                        name:"吴京川",
-                        phone:"13800000000"
+                        name: "吴京川",
+                        phone: "13800000000"
                     }
                 ],
-                bids:["竞价1"],
+                bids: ["竞价1"],
                 biddings: {
                     "竞价1": []
-                    }
+                }
             }
         };
         localStorage.activities = JSON.stringify(two_activities);
@@ -40,11 +39,11 @@ describe("Bidding", function() {
         localStorage.is_bidding = "";
     });
 
-    afterEach(function(){
+    afterEach(function () {
         localStorage.clear();
     })
 
-    it("should bid successfully when it is bidding and user has signed up", function(){
+    it("should bid successfully when it is bidding and user has signed up", function () {
         var phone_no = "13600000000";
         var sms_json = build_sms_json("JJ12", phone_no);
         localStorage.is_bidding = "true";
@@ -57,7 +56,7 @@ describe("Bidding", function() {
         expect(activities["1"].biddings["竞价1"][0].price).toBe("12");
     });
 
-    it("should bid failed when it is not on bidding", function(){
+    it("should bid failed when it is not on bidding", function () {
         var phone_no = "13600000000";
         var sms_json = build_sms_json("JJ12", phone_no);
         // false
@@ -80,7 +79,7 @@ describe("Bidding", function() {
         expect(activities["1"].biddings["竞价1"].length).toBe(0);
     });
 
-    it("should bid failed when user didn't sign up", function(){
+    it("should bid failed when user didn't sign up", function () {
         var phone_no = "13600000001";
         var sms_json = build_sms_json("JJ12", phone_no);
         localStorage.is_bidding = "true";
@@ -90,7 +89,7 @@ describe("Bidding", function() {
         expect(activities["1"].biddings["竞价1"].length).toBe(0);
     });
 
-    it("should accept bid once", function(){
+    it("should accept bid once", function () {
         var phone_no = "13600000000";
         var sms_json = build_sms_json("JJ12", phone_no);
         localStorage.is_bidding = "true";
@@ -103,7 +102,6 @@ describe("Bidding", function() {
         expect(activities["1"].biddings["竞价1"][0].phone).toBe(phone_no);
         expect(activities["1"].biddings["竞价1"][0].price).toBe("12");
     });
-
 
 
 });

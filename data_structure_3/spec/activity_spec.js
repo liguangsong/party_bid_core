@@ -1,15 +1,15 @@
-describe("Activity", function() {
+describe("Activity", function () {
 
 
-    beforeEach(function() {
+    beforeEach(function () {
         init_activity_database()
     });
 
-    afterEach(function(){
+    afterEach(function () {
         localStorage.clear();
     })
 
-    it("should first activity was created on creating", function(){
+    it("should first activity was created on creating", function () {
         var activity_name = "first activity";
 
         var activity = new Activity(activity_name);
@@ -21,7 +21,7 @@ describe("Activity", function() {
         expect(localStorage.current_activity).toBe("0");
     });
 
-    it("should activity id generator increase with creating activity", function(){
+    it("should activity id generator increase with creating activity", function () {
         var activity = new Activity("first activity");
         activity.create();
         activity = new Activity("second activity");

@@ -1,35 +1,35 @@
-describe("SignUp Render", function() {
+describe("SignUp Render", function () {
 
 
-    beforeEach(function() {
+    beforeEach(function () {
         init_activity_database();
         var activities = JSON.parse(localStorage.activities);
         var two_activities = {
-                "0":{
-                    name: "first activity",
-                    sign_ups:[],
-                    bids:[],
-                    biddings:{}
-                },
-                "1": {
-                    name: "second activity",
-                    sign_ups: [
-                        {
-                            name:"仝键",
-                            phone:"13600000000"
-                        },
-                        {
-                            name:"于硕",
-                            phone:"15600000000"
-                        },
-                        {
-                            name:"吴京川",
-                            phone:"13800000000"
-                        }
-                    ],
-                    bids:[],
-                    biddings:{}
-                }
+            "0": {
+                name: "first activity",
+                sign_ups: [],
+                bids: [],
+                biddings: {}
+            },
+            "1": {
+                name: "second activity",
+                sign_ups: [
+                    {
+                        name: "仝键",
+                        phone: "13600000000"
+                    },
+                    {
+                        name: "于硕",
+                        phone: "15600000000"
+                    },
+                    {
+                        name: "吴京川",
+                        phone: "13800000000"
+                    }
+                ],
+                bids: [],
+                biddings: {}
+            }
         };
         var activity_ids = ["0", "1"]
         localStorage.activities = JSON.stringify(two_activities);
@@ -37,12 +37,12 @@ describe("SignUp Render", function() {
         localStorage.current_activity = "1";
     });
 
-    afterEach(function(){
+    afterEach(function () {
         localStorage.clear();
     });
 
 
-    it("should show all signed up users by activity name", function(){
+    it("should show all signed up users by activity name", function () {
         var sign_ups = SignUp.render_sign_ups("second activity");
 
         expect(sign_ups.length).toBe(3);

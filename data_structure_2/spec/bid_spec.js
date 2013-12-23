@@ -1,8 +1,7 @@
+describe("Bid", function () {
 
-describe("Bid", function() {
 
-
-    beforeEach(function() {
+    beforeEach(function () {
         init_activity_database();
         var activities = JSON.parse(localStorage.activities);
         var activity = {
@@ -17,11 +16,11 @@ describe("Bid", function() {
         localStorage.is_bidding = "";
     });
 
-    afterEach(function(){
+    afterEach(function () {
         localStorage.clear();
     })
 
-    it("should create new bid", function(){
+    it("should create new bid", function () {
         Bidding.create_new_bid("0");
 
         var activities = JSON.parse(localStorage.activities);
@@ -29,7 +28,6 @@ describe("Bid", function() {
         expect(activities["0"].bids.length).toBe(1);
         expect(JSON.stringify(activities["0"].biddings["竞价1"])).toBe("[]");
     });
-
 
 
 });

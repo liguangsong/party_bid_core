@@ -1,21 +1,21 @@
-describe("Activity", function() {
+describe("Activity", function () {
 
 
-    beforeEach(function() {
+    beforeEach(function () {
         init_activity_database()
     });
 
-    afterEach(function(){
+    afterEach(function () {
         localStorage.clear();
     })
 
-    it("should first activity was created on creating", function(){
+    it("should first activity was created on creating", function () {
         var activity_name = "first activity";
 
         var activity = new Activity(activity_name);
         activity.create();
 
-        var activities_json = JSON.parse(localStorage.getItem("activities"))||{};
+        var activities_json = JSON.parse(localStorage.getItem("activities")) || {};
         var activity_ids = JSON.parse(localStorage.getItem("activity_ids"))
 
         expect(activity_ids.length).toBe(1);
@@ -26,7 +26,7 @@ describe("Activity", function() {
         expect(localStorage.current_activity).toBe("0");
     });
 
-    it("should activity id generator increase with creating activity", function(){
+    it("should activity id generator increase with creating activity", function () {
         var activity = new Activity("first activity");
         activity.create();
 
@@ -39,13 +39,13 @@ describe("Activity", function() {
 
         expect(localStorage.activity_id_generator).toBe("3");
 
-        var activities_json =JSON.parse(localStorage.getItem("activities"))||{};
+        var activities_json = JSON.parse(localStorage.getItem("activities")) || {};
 
         expect(activities_json["0"].name).toBe("first activity");
         expect(activities_json["1"].name).toBe("second activity");
         expect(activities_json["2"].name).toBe("third activity");
 
-        var activity_ids = JSON.parse(localStorage.getItem("activity_ids"))||[];
+        var activity_ids = JSON.parse(localStorage.getItem("activity_ids")) || [];
 
         expect(activity_ids.length).toBe(3);
         expect(activity_ids[0]).toBe("0");

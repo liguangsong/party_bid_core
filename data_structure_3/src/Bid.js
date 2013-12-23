@@ -37,19 +37,19 @@ Bid.render_bids = function (activity_id) {
     var activity_id = Activity.current_activity();
     var all_bid = Bid.get_all_bid();
     var bid_for_activity = Bid.bid_for_activity(activity_id, all_bid)
-    var b = _.groupBy(bid_for_activity, function (list) {
+    var group_price = _.groupBy(bid_for_activity, function (list) {
         return list.name
     })
     var list_bid_name = [];
-    _.map(b, function (value, key) {
+    _.map(group_price, function (value, key) {
         list_bid_name.push({"name": key, "number": value.length})
     })
     return list_bid_name;
 }
 
 Bid.bid_for_activity = function (activity_id, all_bid) {
-    var a = _.filter(all_bid, function (list) {
+    var bid_for_activity = _.filter(all_bid, function (list) {
         return list.activity_id == activity_id;
     })
-    return a;
+    return bid_for_activity;
 }

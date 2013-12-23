@@ -1,38 +1,37 @@
+describe("Bids and Bidding Render", function () {
 
-describe("Bids and Bidding Render", function() {
 
-
-    beforeEach(function() {
+    beforeEach(function () {
         init_activity_database();
         init_two_activity();
         init_sign_ups();
         var bids = [
             {
                 name: "竞价1",
-                activity_id:"0",
-                biddings:[
+                activity_id: "0",
+                biddings: [
                     {
-                        phone:"13600000000",
+                        phone: "13600000000",
                         price: "9"
 
                     },
                     {
-                        phone:"15600000000",
+                        phone: "15600000000",
                         price: "10"
                     }
                 ]
             },
             {
                 name: "竞价1",
-                activity_id:"1",
-                biddings:[
+                activity_id: "1",
+                biddings: [
                     {
-                        phone:"13600000000",
+                        phone: "13600000000",
                         price: "12"
 
                     },
                     {
-                        phone:"15600000000",
+                        phone: "15600000000",
                         price: "10"
                     }
                 ]
@@ -40,19 +39,19 @@ describe("Bids and Bidding Render", function() {
             },
             {
                 name: "竞价2",
-                activity_id:"1",
-                biddings:[
+                activity_id: "1",
+                biddings: [
                     {
-                        phone:"13600000000",
+                        phone: "13600000000",
                         price: "10"
 
                     },
                     {
-                        phone:"15600000000",
+                        phone: "15600000000",
                         price: "12"
                     },
                     {
-                        phone:"13800000000",
+                        phone: "13800000000",
                         price: "10"
                     }
                 ]
@@ -64,11 +63,11 @@ describe("Bids and Bidding Render", function() {
         localStorage.is_bidding = "";
     });
 
-    afterEach(function(){
+    afterEach(function () {
         localStorage.clear();
     })
 
-    it("should show all bids", function(){
+    it("should show all bids", function () {
         var bids = Bid.render_bids("1");
 
         expect(bids.length).toBe(2);
@@ -76,8 +75,8 @@ describe("Bids and Bidding Render", function() {
         expect(bids[1].name).toBe("竞价2");
     });
 
-    it("should show minimum not repeatable bidding", function(){
-        var biddings = Bidding.render_biddings("1","竞价2");
+    it("should show minimum not repeatable bidding", function () {
+        var biddings = Bidding.render_biddings("1", "竞价2");
 
         expect(biddings.length).toBe(1);
         expect(biddings[0].name).toBe("于");
